@@ -74,8 +74,9 @@ function App() {
 
     if (resp.length > 0) {
 
-      return (<Welcome name={resp.name} id={resp._id} role={"Admin"} />)z
+      return (<Welcome name={resp.name} id={resp._id} role={"Admin"} />)
 
+      
     } else {
       alert("Email or password not match")
     }
