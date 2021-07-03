@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 function App() {
   const [screen, setScreen] = useState(true);
   const [page, setPage] = useState(1);
@@ -7,7 +7,7 @@ function App() {
   const [sname, setSname] = useState('');
   const [semail, setSemail] = useState('');
   const [spass, setSpass] = useState('');
-  const [srole, setSrole] = useState('');
+  const [srole, setSrole] = useState('Admin');
   const [lemail, setLemail] = useState('');
   const [lpass, setLpass] = useState('');
 
@@ -24,6 +24,14 @@ function App() {
   const [Allproject, setProject] = useState([]);
   const [AllTask, setTask] = useState([]);
 
+
+
+  useEffect(() => {
+    getTask();
+    getProject();
+
+
+  }, [])
 
   const handleInputChange = async (event) => {
     event.preventDefault();
@@ -79,7 +87,7 @@ function App() {
       body: JSON.stringify(data)
     })
     let resp = await response.json();
-    console.log(resp);
+    // console.log(resp);
     setScreen(false)
   }
   const signin = async (e) => {
@@ -98,27 +106,22 @@ function App() {
     let resp = await response.json();
     console.log(resp);
 
-    if (resp.length > 0) {
+    if (resp[0].name) {
       setUsername(resp[0].name)
       setUserRole(resp[0].role)
 
       switch (resp[0].role) {
-        case 'admin':
+        case 'Admin':
           setPage(2);
-          getTask();
-          console.log("sda1");
           setScreen1(1)
           break;
 
-        case 'manager':
+        case 'Manager':
           setPage(2);
-          getProject();
-          console.log(Allproject+"555");
           setScreen1(2)
           break;
-        case 'developer':
+        case 'Developer':
           setPage(2);
-          console.log("dev");
           setScreen1(3)
           break;
         default:
@@ -133,7 +136,8 @@ function App() {
   const getProject = async () => {
     let response = await fetch('http://localhost:5000/getProject');
     let resp = await response.json();
-    setProject(resp)
+    setProject(resp, () => console.log("dataset"))
+    console.log(Allproject, "gfyugy");
   }
   const getTask = async () => {
     let response = await fetch('http://localhost:5000/getTask');
@@ -143,6 +147,7 @@ function App() {
 
   const AddProject = async (event) => {
     event.preventDefault();
+
     let data = { projectName: addPro };
     let response = await fetch('http://localhost:5000/addProject', {
       method: "POST",
@@ -211,9 +216,9 @@ function App() {
                 <br />
                 <label htmlFor="role"></label>
                 <select name="role" id="role" required>
-                  <option value="admin">Admin</option>
-                  <option value="manager">Manager</option>
-                  <option value="devloper">Developer</option>
+                  <option value="Admin">Admin</option>
+                  <option value="Manager">Manager</option>
+                  <option value="Devloper">Developer</option>
                 </select>
                 <div className="login_container_btn">
                   <button type='submit'  >Signup</button>
@@ -247,27 +252,25 @@ function App() {
           <hr />
           {
             screen1 === 1 ?
-              <form onChange={handleInputChange} onSubmit={AddProject} >
+              <form onChange={handleInputChange}  >
                 <section className='HAS1'>
                   <div>
-                    <input type="text" name="pname" id="" placeholder='Enter Project Name' />
-                    <button className='HAB'>Add</button>
+                    <input type="text" name="pname" id="" placeholder='Enter Project Name' required />
+                    <button type='submit' onClick={AddProject} className='HAB'>Add</button>
                   </div>
 
                   <div className="left">
-                    {Allproject.map(item => {
-                      <div className="HAPI">
+                    {Allproject.map((item, i) => (
+                      <  div key={i} className="HAPI">
                         <div>
                           <p> <strong> Project name :</strong> <span>{item.projectName}</span> </p>
                           <p> <strong> Current Task :</strong> <span>{item.totalTask}</span> </p>
                         </div>
                         <div>
-                          <button className='HAB'>Edit</button> <br />
-                          <button className='HAB'>Delete</button>
+                          <span className='HAB'>Delete</span>
                         </div>
                       </div>
-
-                    })}
+                    ))}
                   </div>
                 </section>
               </form>
@@ -276,10 +279,11 @@ function App() {
             <form onChange={handleInputChange} onSubmit={AddTask}>
               <section className="HM">
                 <div className="HML">
-                  <div className="HMLPI">
-                    <p>Project Name</p>
-                    <p>Project Name</p>
-                  </div>
+                  {Allproject.map((item, i) => (
+                    <div key={i} className="HMLPI">
+                      <p>{item.projectName}</p>
+                    </div>
+                  ))}
                 </div>
                 <div className="HMR">
                   <div>
