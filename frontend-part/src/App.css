@@ -1,0 +1,173 @@
+.App {
+  height: 98vh;
+  position: relative;
+  margin-top: 10px;
+  text-align: center;
+}
+
+input, select {
+  border-radius: 10px;
+  padding: 8px 10px;
+  width: 200px;
+  margin: 10px;
+}
+
+.signup_container {
+  width: 300px;
+  margin: auto;
+  border-radius: 8px;
+  border: 1px solid green;
+}
+
+.login_container_btn {
+  width: 300px;
+  padding: 0;
+  border-top: 2px solid green;
+}
+
+.login_container_btn>button {
+  width: 300px;
+  font-size: 18px;
+  height: 50px;
+  cursor: pointer;
+  background: white;
+  border-style: none;
+  border-radius: 0 0 8px 8px;
+  padding-bottom: 2px;
+}
+
+.login_container_btn>button:hover {
+  background: green;
+  color: white;
+}
+
+.login_container {
+  border-radius: 8px;
+  border: 1px solid green;
+  width: 300px;
+  margin: auto;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}
+
+.footer>button {
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid green;
+  padding: 8px 18px;
+  background: white;
+}
+
+.footer>button:hover {
+  cursor: pointer;
+  background: green;
+  color: white;
+}
+
+.HA {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.HAB {
+  cursor: pointer;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid green;
+  padding: 10px 15px;
+}
+
+.HAB:hover {
+  background-color: green;
+  color: white;
+}
+
+.HAS1 {
+  text-align: center;
+  width: 70%;
+  margin: auto;
+}
+
+.HAPI {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 20px;
+  text-align: left;
+  border: 1px solid gray;
+  border-radius: 10px
+}
+
+.HAPI>div>button {
+  margin: 5px;
+  width: 5rem;
+  padding: 5px 10px;
+}
+.HMLPI>p:hover{
+  background: green;
+  color: white;
+}
+.HMLPI>p{
+  transition-duration: 1s;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 8px;
+  margin: 10px 30px 10px 0;
+  padding: 10px;
+  font-weight: 600;
+  border: 1px solid gray;
+}
+.HM {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex: 4;
+}
+
+.HML {
+  height: 85vh;
+  flex: .6;
+  border-right: 1px solid gray;
+}
+
+.HMR {
+  text-align: center;
+  justify-content: space-around;
+  flex: 3.4;
+}
+
+.HMRD1 {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.HMRP {
+margin: 10px;
+  font-size: 13px;
+  padding: 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  text-align: left;
+}
+.HDRP{
+  width: 70%;
+  margin: auto;
+  font-size: 13px;
+  padding: 10px 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  text-align: left;
+
+}
+.HDB{
+  margin-top: -3rem;
+  float: right
+}
