@@ -44,6 +44,7 @@ const addProjectSchema = mongoose.Schema({
     pendingTask: String,
 });
 
+
 const addTaskSchema = mongoose.Schema({
     taskName: String,
     asighTo: String,
